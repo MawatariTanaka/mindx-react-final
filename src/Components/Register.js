@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, Button } from "antd";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../Contexts/FirebaseContext";
+import { AppContext } from "../Contexts/AppContext";
 
 export default function Register() {
     const navigate = useNavigate();
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
+    const { dispatch } = useContext(AppContext);
     const onFinish = async (values) => {
         setLoading(true);
         try {
@@ -20,6 +22,10 @@ export default function Register() {
                 username,
                 email,
                 toDoList: [],
+            });
+            dispatch({
+                type: "SET_USER",
+                payload: [uid, []],
             });
             navigate("/");
         } catch (error) {

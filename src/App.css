@@ -1,5 +1,5 @@
 * {
-    font-size: 'Arial';
+    font-family: "Arial";
 }
 
 .App {
@@ -13,5 +13,9 @@
 
 h1 {
     width: 100%;
+    text-align: center;
+}
+
+.nav-to-do-item {
     text-align: center;
 }
