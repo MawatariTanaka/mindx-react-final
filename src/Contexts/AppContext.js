@@ -1,10 +1,13 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer } from "react";
 
-const initialState = {};
+const initialState = {
+    userId: null,
+    toDoList: [],
+};
 
 export const AppContext = createContext(initialState);
 
-const dispatch = (state, action) => {
+const appReducer = (state, action) => {
     switch (action.type) {
         default:
             return state;
@@ -12,7 +15,7 @@ const dispatch = (state, action) => {
 };
 
 export const AppProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(dispatch, initialState);
+    const [state, dispatch] = useReducer(appReducer, initialState);
     return (
         <AppContext.Provider value={{ state, dispatch }}>
             {children}
